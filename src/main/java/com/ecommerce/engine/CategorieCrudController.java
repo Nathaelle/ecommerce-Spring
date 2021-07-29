@@ -19,6 +19,7 @@ public class CategorieCrudController {
 	@GetMapping("/category")
 	public String showForm(@ModelAttribute Category category) {
 		
+		System.out.println(repo.getById(1));
 		return "cat";
 	}
 	

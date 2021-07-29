@@ -25,7 +25,7 @@ public class Item {
 	
 	private int quantity;
 
-	@ManyToOne
+	@ManyToOne(targetEntity=Category.class)
 	private Category category;
 
 
@@ -113,7 +113,7 @@ public class Item {
 	public String toString() {
 		return "Item [id=" + id + ", reference=" + reference + ", name=" + name + ", description=" + description
 				+ ", image=" + image + ", price=" + price + ", ingredients=" + ingredients + ", quantity=" + quantity
-				+ ", category="  + "]";
+				+ ", category=" + category + "]";
 	}
 	
 	
