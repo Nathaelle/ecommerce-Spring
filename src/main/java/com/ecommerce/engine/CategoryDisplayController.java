@@ -1,5 +1,7 @@
 package com.ecommerce.engine;
 
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpSession;
 
@@ -21,9 +23,12 @@ public class CategoryDisplayController {
 	@GetMapping("/category-{id}")
 	public String showCategory(Model model, @PathVariable int id) {
 		
-		Category category = (repo.existsById(id))? repo.getById(id) : null;
+		List<Category> cats = repo.findAll();
+		model.addAttribute("categories", cats);
 		
+		Category category = (repo.existsById(id))? repo.getById(id) : null;
 		model.addAttribute("category", category);
+		
 		return "bycat";
 		
 	}
