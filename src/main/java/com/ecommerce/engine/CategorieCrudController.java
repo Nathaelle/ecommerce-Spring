@@ -11,18 +11,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ecommerce.engine.entities.Category;
 import com.ecommerce.engine.repositories.CategoryRepository;
 
+/**
+ * Controller CRUD (= Create, Read, Update, Delete)
+ * De l'objet de gestion métier (Entité) "Category"
+ */
 @Controller
 public class CategorieCrudController {
 	
 	@Autowired
 	private CategoryRepository repo;
-	
-	@GetMapping("/category")
-	public String showForm(@ModelAttribute Category category) {
-		
-		System.out.println(repo.findById(1));
-		return "cat";
-	}
 	
 	@PostMapping("/category")
 	public @ResponseBody String add(@ModelAttribute Category category, RedirectAttributes redatt) {

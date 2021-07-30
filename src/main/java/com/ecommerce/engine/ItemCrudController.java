@@ -10,18 +10,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ecommerce.engine.entities.Item;
 import com.ecommerce.engine.repositories.ItemRepository;
 
+/**
+ * Controller CRUD (= Create, Read, Update, Delete)
+ * De l'objet de gestion métier (Entité) "Item" (article)
+ */
 @Controller
 public class ItemCrudController {
 	
 	@Autowired 
 	private ItemRepository repo;
 	
-	@GetMapping("/item")
-	public String showForm(@ModelAttribute Item item) {
-		
-		
-		return "item";
-	}
 	
 	@PostMapping("/item")
 	public String add(@ModelAttribute Item item, RedirectAttributes redatt) {
