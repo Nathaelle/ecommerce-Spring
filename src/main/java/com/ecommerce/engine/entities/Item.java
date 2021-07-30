@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -113,7 +114,7 @@ public class Item {
 	public String toString() {
 		return "Item [id=" + id + ", reference=" + reference + ", name=" + name + ", description=" + description
 				+ ", image=" + image + ", price=" + price + ", ingredients=" + ingredients + ", quantity=" + quantity
-				+ ", category=" + category + "]";
+				+ ", category="  + "]";
 	}
 	
 	

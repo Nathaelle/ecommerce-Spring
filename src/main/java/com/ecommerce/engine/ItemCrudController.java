@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ecommerce.engine.entities.Item;
 import com.ecommerce.engine.repositories.ItemRepository;
@@ -24,13 +25,12 @@ public class ItemCrudController {
 	}
 	
 	@PostMapping("/item")
-	public @ResponseBody String add(@ModelAttribute Item item) {
+	public String add(@ModelAttribute Item item, RedirectAttributes redatt) {
 		
 		repo.save(item);
-		System.out.println(item);
 	
 		
-		return "L'article a été inséré avec succès";
+		return "redirect:/item";
 	}
 
 }

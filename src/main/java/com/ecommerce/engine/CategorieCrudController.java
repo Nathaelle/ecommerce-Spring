@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ecommerce.engine.entities.Category;
 import com.ecommerce.engine.repositories.CategoryRepository;
@@ -19,18 +20,18 @@ public class CategorieCrudController {
 	@GetMapping("/category")
 	public String showForm(@ModelAttribute Category category) {
 		
-		System.out.println(repo.getById(1));
+		System.out.println(repo.findById(1));
 		return "cat";
 	}
 	
 	@PostMapping("/category")
-	public @ResponseBody String add(@ModelAttribute Category category) {
+	public @ResponseBody String add(@ModelAttribute Category category, RedirectAttributes redatt) {
 		
-		System.out.println(category);
 		repo.save(category);
-		System.out.println(category);
 		
-		return "La catégorie a été insérée";
+		redatt.addAttribute("id", category.getId());
+		
+		return "redirect:/category-{id}";
 	}
 
 }
