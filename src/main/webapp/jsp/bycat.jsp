@@ -16,86 +16,98 @@
 
 	<%@ include file="menu.jsp" %>
 	
-	<div class="p-5 mb-4 bg-light rounded-3 jumbotron">
-      	<div class="container-fluid py-5">
-	        <h1 class="display-5 fw-bold">Custom jumbotron</h1>
-	        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-	        <button class="btn btn-primary btn-lg" type="button">Example button</button>
-      	</div>
-    </div>
+	<c:choose>
+		<c:when test="${category != null}">
+		<div class="p-5 mb-4 bg-light rounded-3 jumbotron">
+	      	<div class="container-fluid py-5">
+		        <h1 class="display-5 fw-bold">${ category.name }</h1>
+		        <p class="col-md-8 fs-4">${ category.shortText }</p>
+		     </div>
+	    </div>
 	
-	<div class="p-4 container-fluid mt-4 m-y-4">
-		<nav aria-label="breadcrumb">
-		  <%-- <ol class="breadcrumb">
-		    <li class="breadcrumb-item"><a href="#">Home</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">${ fn:toUpperCase(fn:substring(cat.name, 0, 1)) }${ fn:toLowerCase(fn:substring(cat.name, 1, fn:length(cat.name))) }</li>
-		  </ol> --%>
-		</nav>
-		
-	<div class="row">
-		<%-- <c:forEach items="${ cat.items }" var="item">
-		<div class="col-4">
-			<div class="card">
-				<img class="card-img-top" src="${ pageContext.request.contextPath }/img/${ item.image }" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">${ item.name }</h5>
-					<p class="card-text">${ item.description }</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+		<div class="p-4 container-fluid mt-4 m-y-4">
+			<nav aria-label="breadcrumb">
+			  <ol class="breadcrumb">
+			    <li class="breadcrumb-item"><a href="home">Home</a></li>
+			    <li class="breadcrumb-item active" aria-current="page">${ fn:toUpperCase(fn:substring(category.name, 0, 1)) }${ fn:toLowerCase(fn:substring(category.name, 1, fn:length(category.name))) }</li>
+			  </ol> 
+			</nav>
+			
+			<div class="row">
+				<c:forEach items="${ cat.items }" var="item">
+				<div class="col-4">
+					<div class="card">
+						<img class="card-img-top" src="${ pageContext.request.contextPath }/img/${ item.image }" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">${ item.name }</h5>
+							<p class="card-text">${ item.description }</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		</c:forEach> --%>
-		<!-- <div class="col-4">
-			<div class="card">
-				<img class="card-img-top" src="..." alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+				</c:forEach>
+				<!-- <div class="col-4">
+					<div class="card">
+						<img class="card-img-top" src="..." alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="col-4">
-			<div class="card">
-				<img class="card-img-top" src="..." alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+				<div class="col-4">
+					<div class="card">
+						<img class="card-img-top" src="..." alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="col-4">
-			<div class="card">
-				<img class="card-img-top" src="..." alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+				<div class="col-4">
+					<div class="card">
+						<img class="card-img-top" src="..." alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="col-4">
-			<div class="card">
-				<img class="card-img-top" src="..." alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+				<div class="col-4">
+					<div class="card">
+						<img class="card-img-top" src="..." alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						</div>
+					</div>
 				</div>
+				<div class="col-4">
+					<div class="card">
+						<img class="card-img-top" src="..." alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						</div>
+					</div>
+				</div> -->
 			</div>
-		</div>
-		<div class="col-4">
-			<div class="card">
-				<img class="card-img-top" src="..." alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-		</div> -->
-	</div>
+		</c:when>
+		<c:otherwise>
+			<div class="p-5 mb-4 bg-light rounded-3 jumbotron">
+		      	<div class="container-fluid py-5">
+			        <h1 class="display-5 fw-bold">404 - Not found</h1>
+			        <p class="col-md-8 fs-4">La catégorie demandée n'a pas été trouvée.</p>
+			     </div>
+		    </div>
+			
+		</c:otherwise>
+	</c:choose>
 </div>
 	
 	

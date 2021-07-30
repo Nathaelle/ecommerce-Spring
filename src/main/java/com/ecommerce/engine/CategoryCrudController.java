@@ -1,5 +1,7 @@
 package com.ecommerce.engine;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,7 @@ import com.ecommerce.engine.repositories.CategoryRepository;
  * De l'objet de gestion métier (Entité) "Category"
  */
 @Controller
-public class CategorieCrudController {
+public class CategoryCrudController {
 	
 	@Autowired
 	private CategoryRepository repo;
@@ -26,9 +28,9 @@ public class CategorieCrudController {
 		
 		repo.save(category);
 		
-		redatt.addAttribute("id", category.getId());
+		//redatt.addAttribute("id", category.getId());
 		
-		return "redirect:/category-{id}";
+		return "";
 	}
 
 }
