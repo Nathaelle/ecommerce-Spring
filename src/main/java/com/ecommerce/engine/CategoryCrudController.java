@@ -23,14 +23,17 @@ public class CategoryCrudController {
 	@Autowired
 	private CategoryRepository repo;
 	
+	/**
+	 * Récupère les données du formulaire dans l'objet category
+	 * @param category Binding formulaire, propriétés de l'objet category auto-hydratée
+	 * @return La catégorie au format JSON
+	 */
 	@PostMapping("/category")
-	public @ResponseBody String add(@ModelAttribute Category category, RedirectAttributes redatt) {
+	public @ResponseBody Category add(@ModelAttribute Category category) {
 		
 		repo.save(category);
-		
-		//redatt.addAttribute("id", category.getId());
-		
-		return "";
+
+		return category;
 	}
 
 }

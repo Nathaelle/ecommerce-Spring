@@ -13,28 +13,69 @@
 	<%@ include file="menu.jsp" %>
 
 	<h1>Panneau d'administration</h1>
-
-	<h2>Ajouter une catégorie</h2>
-	<form:form servletRelativeAction="/category" modelAttribute="category"
-acceptCharset="utf-8">
-		<p><label for="name">Nom : </label><form:input path="name"/></p>
-		<p><label for="shortText">Description : </label><form:input path="shortText"/></p> 
-		<button type="submit">Envoyer</button>
-	</form:form>
 	
+	<hr class="my-2">
+	
+	<div class="container-md mt-4">
+		<h2>Ajouter une catégorie</h2>
+		<form:form servletRelativeAction="/category" modelAttribute="category"
+	acceptCharset="utf-8">
+			<div class="mb-3">
+		    	<label for="name" class="form-label">Nom</label>
+		    	<form:input class="form-control" path="name"/>
+		  	</div>
+		  	<div class="mb-3">
+		    	<label for="shortText" class="form-label">Description</label>
+		    	<form:input class="form-control" path="shortText"/>
+		  	</div>
+		  	<button type="submit" class="btn btn-primary">Envoyer</button>
+		</form:form>
+	</div>
+	
+	<hr class="my-2">
+	
+	<div class="container-md mt-4">
 	<h2>Ajouter un article</h2>
-	<form:form servletRelativeAction="/item" modelAttribute="item"
-acceptCharset="utf-8">
-		<p><label for="reference">Réference : </label><form:input path="reference"/></p>
-		<p><label for="name">Nom de l'article : </label><form:input path="name"/></p> 
-		<p><label for="description">Description : </label><form:input path="description"/></p>
-		<p><label for="image">Image : </label><form:input path="image"/></p> 
-		<p><label for="price">Prix : </label><form:input path="price"/></p>
-		<p><label for="ingredients">Ingrédients : </label><form:input path="ingredients"/></p> 
-		<p><label for="name">Quantité : </label><form:input path="quantity"/></p>
-		<p><label for="category">Catégorie : </label><form:input path="category"/></p> 	
-		<button type="submit">Envoyer</button>
-	</form:form>
+		<form:form servletRelativeAction="/item" modelAttribute="item"
+	acceptCharset="utf-8">
+			<div class="mb-3">
+		    	<label for="reference" class="form-label">Référence</label>
+		    	<form:input class="form-control" path="reference"/>
+		  	</div>
+		  	<div class="mb-3">
+		    	<label for="name" class="form-label">Nom de l'article</label>
+		    	<form:input class="form-control" path="name"/>
+		  	</div>
+		  	<div class="mb-3">
+		    	<label for="description" class="form-label">Nom</label>
+		    	<form:input class="form-control" path="description"/>
+		  	</div>
+		  	<div class="mb-3">
+		    	<label for="image" class="form-label">Image</label>
+		    	<form:input class="form-control" path="image"/>
+		  	</div>
+		  	<div class="mb-3">
+		    	<label for="price" class="form-label">Prix</label>
+		    	<form:input class="form-control" path="price"/>
+		  	</div>
+		  	<div class="mb-3">
+		    	<label for="ingredients" class="form-label">Ingrédients</label>
+		    	<form:input class="form-control" path="ingredients"/>
+		  	</div>
+		  	<div class="mb-3">
+		    	<label for="quantity" class="form-label">Quantité en stock</label>
+		    	<form:input type="number" class="form-control" path="quantity"/>
+		  	</div>
+		  	<div class="mb-3">
+		    	<label for="category" class="form-label">Catégorie</label>
+		    	<form:select class="form-select" path="category">
+				   <form:option value="NONE" label="--- Selectionner une catégorie ---"/>
+				   <form:options items="${categories}" itemLabel="name" />
+				</form:select>
+		  	</div>
+			<button type="submit" class="btn btn-primary">Envoyer</button>
+		</form:form>
+	</div>
 	
 </body>
 </html>
