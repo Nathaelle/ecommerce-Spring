@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -16,6 +17,7 @@ import com.ecommerce.engine.repositories.ItemRepository;
  * De l'objet de gestion métier (Entité) "Item" (article)
  */
 @Controller
+@RequestMapping("/item")
 public class ItemCrudController {
 	
 	
@@ -27,10 +29,13 @@ public class ItemCrudController {
 	 * @param category Binding formulaire, propriétés de l'objet category auto-hydratée
 	 * @return La catégorie au format JSON
 	 */
-	@PostMapping("/item")
+	@PostMapping("/add")
 	public @ResponseBody Item add(@ModelAttribute Item item) {
 		
 		repo.save(item);
+		
+		// Pour éviter les erreurs de stringification
+		item.setCategory(null);
 	
 		return item;
 	}

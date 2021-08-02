@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
@@ -17,8 +18,9 @@
 	<hr class="my-2">
 	
 	<div class="container-md mt-4">
-		<h2>Ajouter une catégorie</h2>
-		<form:form servletRelativeAction="/category" modelAttribute="category"
+		
+		<h2>${ category.id != 0 ? "Modifier la" : "Ajouter une" } catégorie</h2>
+		<form:form servletRelativeAction="/category/save" modelAttribute="category"
 	acceptCharset="utf-8">
 			<div class="mb-3">
 		    	<label for="name" class="form-label">Nom</label>
@@ -28,15 +30,46 @@
 		    	<label for="shortText" class="form-label">Description</label>
 		    	<form:input class="form-control" path="shortText"/>
 		  	</div>
-		  	<button type="submit" class="btn btn-primary">Envoyer</button>
+		  	<c:if test="${ category.id != 0 }">
+		  		<form:input type="hidden" path="id"/>
+		  	</c:if>
+		  	<button type="submit" class="btn btn-primary">${ category.id != 0 ? "Modifier" : "Ajouter" }</button>
 		</form:form>
+		
+		
+	</div>
+	
+	<div class="container-md mt-4">
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Nom</th>
+		      <th scope="col">Description</th>
+		      <th scope="col">Action</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+			<c:if test="${ category.id != 0 }">
+				<tr>
+			      <td colspan=3><a class="btn btn-outline-primary" href="admin">Ajouter une nouvelle catégorie</a></td>
+			    </tr>
+		  	</c:if>
+		  <c:forEach items="${ categories }" var="cat">
+		    <tr>
+		      <td>${ cat.name }</td>
+		      <td>${ cat.shortText }</td>
+		      <td><a href="admin-cat-${ cat.id }">Modifier</a></td>
+		    </tr>
+		  </c:forEach>
+		  </tbody>
+		</table>
 	</div>
 	
 	<hr class="my-2">
 	
 	<div class="container-md mt-4">
 	<h2>Ajouter un article</h2>
-		<form:form servletRelativeAction="/item" modelAttribute="item"
+		<form:form servletRelativeAction="/item/add" modelAttribute="item"
 	acceptCharset="utf-8">
 			<div class="mb-3">
 		    	<label for="reference" class="form-label">Référence</label>
@@ -73,7 +106,10 @@
 				   <form:options items="${categories}" itemLabel="name" />
 				</form:select>
 		  	</div>
-			<button type="submit" class="btn btn-primary">Envoyer</button>
+		  	<c:if test="${ category.id != 0}">
+		  		<form:input type="hidden" path="id"/>
+		  	</c:if>
+			<button type="submit" class="btn btn-primary">${ category.id != 0 ? "Modifier" : "Ajouter" }</button>
 		</form:form>
 	</div>
 	
