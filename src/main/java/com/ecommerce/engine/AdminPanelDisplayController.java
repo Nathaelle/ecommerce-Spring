@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.ecommerce.engine.entities.Category;
 import com.ecommerce.engine.entities.Item;
+import com.ecommerce.engine.entities.User;
 import com.ecommerce.engine.repositories.CategoryRepository;
 import com.ecommerce.engine.repositories.ItemRepository;
 
@@ -32,8 +33,8 @@ public class AdminPanelDisplayController {
 	 * @param item Binding(liaison) du modèle Item avec le formulaire "catégorie"
 	 * @return Nom de la vue (pour le ViewResolver)
 	 */
-	@GetMapping({"/admin", "/admin-cat-{idcat}", "/admin-it-{idit}"})
-	public String showPanel(Model model, @ModelAttribute Category category, @ModelAttribute Item item, @PathVariable(required=false) Integer idcat, @PathVariable(required=false) Integer idit) {
+	@GetMapping({"/admin", "/admin-cat-{idcat}", "/admin-it-{idit}", "/admin-user-{iduser}"})
+	public String showPanel(Model model, @ModelAttribute Category category, @ModelAttribute User user, @ModelAttribute Item item, @PathVariable(required=false) Integer idcat, @PathVariable(required=false) Integer idit) {
 		
 		List<Category> cats = catRepo.findAll();
 		model.addAttribute("categories", cats);
