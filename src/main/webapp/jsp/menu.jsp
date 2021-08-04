@@ -20,16 +20,30 @@
           				</a>
           				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           					<c:forEach items="${ categories }" var="cat">
-            					<li><a class="dropdown-item" href="category-${ cat.id }">${ cat.name }</a></li>
+            					<li><a class="dropdown-item" href='category-${ cat.id }'>${ cat.name }</a></li>
             				</c:forEach>
             			</ul>
         			</li>
-        			<li class="nav-item">
-          				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Mes commandes</a>
-        			</li>
+        			<sec:authorize access="isAuthenticated()">
+  						<li class="nav-item">
+          					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Mes commandes</a>
+        				</li>
+					</sec:authorize>
+        			
       			</ul>
       			
-      			<button class="btn btn-outline-success">Connexion | Déconnection</button>
+      			
+      			<sec:authorize access="!isAuthenticated()">
+  					<a class="btn btn-outline-success" href="login">Connexion</a>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+				<form action="logout" method="POST">
+					<sec:csrfInput />
+					<button type="submit" class="btn btn-outline-success">Déconnexion</button>
+				</form>
+				</sec:authorize>
+      			
+      			
       			<p class="nav-item mt-3">
      				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
            				Voir le panier
